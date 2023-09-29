@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Problems</title>
+</head>
+<body>
+    <script>
+        // 1) Area of a triangle
+        function calculateTriangleArea(a, b, c) {
+            const s = (a + b + c) / 2;
+            const area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
+            return area;
+        }
+        const triangleArea = calculateTriangleArea(5, 6, 7);
+        console.log("1) Area of the triangle:", triangleArea);
+
+        // 2) Leap year check
+        function isLeapYear(year) {
+            return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+        }
+        const year = 2024; // Change the year here
+        console.log(`2) ${year} is a leap year: ${isLeapYear(year)}`);
+
+        // 3) 1st January on a Sunday
+        for (let year = 2014; year <= 2050; year++) {
+            const date = new Date(year, 0, 1); // January is month 0
+            if (date.getDay() === 0) {
+                console.log(`3) 1st January is a Sunday in ${year}`);
+                break;
+            }
+        }
+
+        // 4) Days left until Christmas
+        function daysUntilChristmas() {
+            const today = new Date();
+            const christmas = new Date(today.getFullYear(), 11, 25); // December is month 11
+            if (today > christmas) {
+                christmas.setFullYear(today.getFullYear() + 1);
+            }
+            const daysLeft = Math.ceil((christmas - today) / (1000 * 60 * 60 * 24));
+            return daysLeft;
+        }
+        console.log("4) Days left until Christmas:", daysUntilChristmas());
+
+        // 5) Compare objects
+        function compareObjects(obj1, obj2) {
+            const keys1 = Object.keys(obj1);
+            const keys2 = Object.keys(obj2);
+            if (keys1.length !== keys2.length) {
+                return false;
+            }
+            for (const key of keys1) {
+                if (obj1[key] !== obj2[key]) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        const objA = { a: 1, b: 2 };
+        const objB = { b: 2, a: 1 };
+        console.log("5) Objects are equivalent:", compareObjects(objA, objB));
+
+        // 6) Sort letters in a string
+        function sortStringAlphabetically(input) {
+            return input.split('').sort().join('');
+        }
+        const inputString = 'webmaster';
+        console.log("6) Sorted string:", sortStringAlphabetically(inputString));
+
+        // 7) Capitalize first letter of each word
+        function capitalizeWords(input) {
+            return input.replace(/\b\w/g, (char) => char.toUpperCase());
+        }
+        const sentence = 'the quick brown fox';
+        console.log("7) Capitalized sentence:", capitalizeWords(sentence));
+
+        // 8) Second lowest and second greatest numbers
+        function findSecondLowestAndGreatest(arr) {
+            const sortedArr = arr.sort((a, b) => a - b);
+            const uniqueArr = [...new Set(sortedArr)];
+            if (uniqueArr.length < 2) {
+                return "Array has less than 2 unique numbers.";
+            }
+            return [uniqueArr[1], uniqueArr[uniqueArr.length - 2]];
+        }
+        const numbers = [1, 2, 3, 4, 5];
+        console.log("8) Second lowest and second greatest numbers:", findSecondLowestAndGreatest(numbers));
+    </script>
+</body>
+</html>
